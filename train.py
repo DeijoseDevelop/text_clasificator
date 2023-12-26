@@ -17,5 +17,5 @@ X_test_tfidf = vectorizer.transform(X_test)
 model = MultinomialNB()
 model.fit(X_train_tfidf, y_train)
 
-model_saver.dump(model, 'model.joblib')
-model_saver.dump(vectorizer, 'vectorizer.joblib')
+model_saver.dump(model, 'app/modules/category_clasificator/data/train_models/model.joblib')
+model_saver.dump(vectorizer, 'app/modules/category_clasificator/data/train_models/vectorizer.joblib')
