@@ -1,5 +1,5 @@
 from app.modules.common import interfaces
-from app.modules.category_clasificator.data import repositories
+from app.modules.category_classificator.data import repositories
 from app.modules.common import exceptions
 
 

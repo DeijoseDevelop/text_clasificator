@@ -1,12 +1,12 @@
 import polars as pl
 
-from app.modules.category_clasificator.data import repositories
+from app.modules.category_classificator.data import repositories
 
 
 class CleanDataRepository(repositories.BaseRepository):
 
     def __init__(self):
-        self.df = pl.read_excel("app/modules/category_clasificator/data/train_data/test_data.xlsx")
+        self.df = pl.read_excel("/Users/lsvtech2022/Documents/projects/python/text_clasificator/app/modules/category_classificator/data/train_data/test_data.xlsx")
         self.texts = None
         self.labels = None
 

@@ -1,8 +1,15 @@
 import abc
-from flasgger import SwaggerView
+import typing
+
+import flask
+import flasgger
 
 
-class APIView(SwaggerView):
+class APIView(abc.ABC, flasgger.SwaggerView):
+    pass
+
+
+class BaseController(abc.ABC):
     pass
 
 

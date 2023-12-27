@@ -1,6 +1,6 @@
-from typing import Dict
+from typing import Dict, Any
 
-import polars as pl
+import flask
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
@@ -15,16 +15,16 @@ class TrainModelRepository(object):
         self.model = MultinomialNB()
         self.vectorizer = TfidfVectorizer()
 
-    def train(self, data: Dict[str]) -> None:
-        self._preprocces_data(data=data)
+    def train(self, data: Dict[str, str]) -> None:
+        self._preprocess_data(data=data)
         vectorized_data = self.vectorization_data()
 
-        self.model.fit(vectorized_data["x_train_tfidf"], vectorized_data["y_train"])
+        self.model.fit(vectorized_data["x_train_tfidf"], self.preprocessed_data["y_train"])
 
-    def vectorization_data(self) -> None:
+    def vectorization_data(self) -> Dict[str, Any]:
         preprocessed_data = self.preprocessed_data
-        x_train_tfidf = self.vectorizer.fit_transform(preprocessed_data["X_train"])
-        x_test_tfidf = self.vectorizer.transform(preprocessed_data["X_test"])
+        x_train_tfidf = self.vectorizer.fit_transform(preprocessed_data["x_train"])
+        x_test_tfidf = self.vectorizer.transform(preprocessed_data["x_test"])
 
         vectorized_data = {
             "x_train_tfidf": x_train_tfidf,
@@ -33,7 +33,7 @@ class TrainModelRepository(object):
         self.vectorization_data = vectorized_data
         return vectorized_data
 
-    def _preprocess_data(self, data: Dict[str]) -> None:
+    def _preprocess_data(self, data: Dict[str, str]) -> None:
         (x_train, x_test, y_train, y_test) = train_test_split(data["texts"], data["labels"], test_size=0.2)
 
         self.preprocessed_data = {
@@ -44,7 +44,7 @@ class TrainModelRepository(object):
         }
 
     def save_model(self):
-        model_saver.dump(self.model, 'app/modules/category_clasificator/data/train_models/model.joblib')
+        model_saver.dump(self.model, flask.current_app.config.get("model"))
 
     def save_vectorizer(self):
-        model_saver.dump(self.vectorizer, 'app/modules/category_clasificator/data/train_models/vectorizer.joblib')
+        model_saver.dump(self.vectorizer, flask.current_app.config.get("vectorizer"))

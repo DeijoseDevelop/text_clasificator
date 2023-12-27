@@ -1,2 +1,0 @@
-from app.modules.category_clasificator.data.use_cases.uc_clean_data import CleanDataUseCase
-from app.modules.category_clasificator.data.use_cases.uc_train_model import TrainModelUseCase, TrainModelUseCaseParams
