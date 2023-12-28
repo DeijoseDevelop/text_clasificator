@@ -27,3 +27,7 @@ class UseCaseNoParams(abc.ABC):
     @abc.abstractmethod
     def call(self):
         pass
+
+
+class Manager(abc.ABC):
+    pass

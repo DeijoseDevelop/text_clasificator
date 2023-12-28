@@ -46,8 +46,10 @@ template = {
     },
 }
 
+# Machine learning config
 app.config["model"] = "/Users/lsvtech2022/Documents/projects/python/text_clasificator/app/modules/category_classificator/data/train_models/model.joblib"
 app.config["vectorizer"] = "/Users/lsvtech2022/Documents/projects/python/text_clasificator/app/modules/category_classificator/data/train_models/vectorizer.joblib"
+app.config["recognition_data"] = "/Users/lsvtech2022/Documents/projects/python/text_clasificator/app/modules/user_recognition/data/train_data"
 
 swagger = Swagger(app, template=template)
 
