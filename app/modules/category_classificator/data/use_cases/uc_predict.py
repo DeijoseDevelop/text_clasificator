@@ -1,4 +1,4 @@
-from typing import List
+import typing as t
 
 from app.modules.common import interfaces
 from app.modules.category_classificator.data import repositories
@@ -16,7 +16,7 @@ class PredictUseCase(interfaces.UseCase):
     def __init__(self, repository: repositories.PredictRepository) -> None:
         self.repository = repository
 
-    def call(self, params: PredictUseCaseParams) -> List[str]:
+    def call(self, params: PredictUseCaseParams) -> t.List[str]:
         try:
             prediction = self.repository.predict(params.text)
             return list(prediction)

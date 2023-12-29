@@ -1,4 +1,5 @@
 import os
+import typing as t
 
 import flask
 
@@ -10,7 +11,7 @@ IMAGES_PATH = f'{DATA_PATH}/images'
 
 class DataManager(interfaces.Manager):
 
-    def __init__(self, face_detector: interfaces.Detector, path: str = IMAGES_PATH):
+    def __init__(self, face_detector: interfaces.Detector, path: str = IMAGES_PATH) -> None:
         self._path = path
         self.face_detector = face_detector
 
@@ -21,10 +22,10 @@ class DataManager(interfaces.Manager):
 
         self.set_data()
 
-    def get_image_names(self) -> list[str]:
+    def get_image_names(self) -> t.List[str]:
         return self._image_names
 
-    def get_names(self) -> list[str]:
+    def get_names(self) -> t.List[str]:
         return self._names
 
     def get_encodings(self) -> list:
@@ -46,7 +47,7 @@ class DataManager(interfaces.Manager):
             self._encodings.append(self.face_detector.get_face_encodings(image)[0])
         return self._encodings
 
-    def set_names(self) -> list[str]:
+    def set_names(self) -> t.List[str]:
         self._names = [
             image_name.split('.')[0]
             for image_name in self.get_image_names()

@@ -1,4 +1,4 @@
-from typing import Dict, Any
+from typing import Any
 
 import flask
 import joblib as model_saver
@@ -8,7 +8,7 @@ from app.modules.category_classificator.data import repositories
 
 class PredictRepository(repositories.BaseRepository):
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.model = model_saver.load(flask.current_app.config.get("model"))
         self.vectorizer = model_saver.load(flask.current_app.config.get("vectorizer"))
 
