@@ -1,6 +1,7 @@
 import os
 import typing as t
 
+from numpy import ndarray
 import flask
 
 from app.modules.common import interfaces
@@ -28,7 +29,7 @@ class DataManager(interfaces.Manager):
     def get_names(self) -> t.List[str]:
         return self._names
 
-    def get_encodings(self) -> list:
+    def get_encodings(self) -> t.List[ndarray]:
         return self._encodings
 
     def get_data(self) -> list:
@@ -41,7 +42,7 @@ class DataManager(interfaces.Manager):
                 "encoding": encoding,
             })
 
-    def set_encodings(self) -> list:
+    def set_encodings(self) -> t.List[ndarray]:
         for image_name in self.get_image_names():
             image = self.face_detector.load_image(os.path.join(self._path, image_name))
             self._encodings.append(self.face_detector.get_face_encodings(image)[0])
@@ -52,9 +53,5 @@ class DataManager(interfaces.Manager):
             image_name.split('.')[0]
             for image_name in self.get_image_names()
         ]
-
-        # with open(f'{DATA_PATH}/names.txt', 'r') as file:
-        #     lines = file.readlines()
-        # self._names = [line.strip() for line in lines]
 
         return self._names

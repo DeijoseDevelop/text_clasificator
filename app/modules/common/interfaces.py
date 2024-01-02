@@ -19,7 +19,7 @@ class Params(abc.ABC):
 
 class UseCase(abc.ABC):
     @abc.abstractmethod
-    def call(self, params: Params = None):
+    def call(self, params: Params):
         pass
 
 
