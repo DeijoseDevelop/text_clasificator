@@ -18,7 +18,7 @@ class FaceDetector(interfaces.Detector):
     def get_face_encodings(
         self,
         frame: cv2.typing.MatLike,
-        locations: t.List[t.Tuple[int, t.Any, t.Any, int]]
+        locations: t.List[t.Tuple[int, t.Any, t.Any, int]] | None = None
     ) -> t.List[ndarray]:
 
         return face_recognition.face_encodings(frame, locations)
