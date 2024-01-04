@@ -22,7 +22,7 @@ class UserRecognitionView(interfaces.APIView):
         )
 
         if "picture" not in flask.request.files:
-            return utils.Response({"message": 'Picture not found'}, status=404)
+            return utils.Response({"message": 'Picture not found'}, status=utils.Status.NOT_FOUND_404)
 
         picture = flask.request.files["picture"]
         io_picture = io.BytesIO(picture.stream.read())
@@ -31,6 +31,7 @@ class UserRecognitionView(interfaces.APIView):
 
         io_picture.seek(0)
         recognition["image"] = base64.b64encode(io_picture.getvalue()).decode()
+        recognition["image"].seek(0)
 
         return utils.Response(recognition)
 
