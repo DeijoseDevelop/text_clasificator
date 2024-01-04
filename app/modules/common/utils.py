@@ -8,6 +8,8 @@ import flask
 
 class Status(enum.Enum):
     OK_200 = 200
+    BAD_REQUEST_400 = 400
+    UNAUTHORIZED_401 = 401
     NOT_FOUND_404 = 404
     SERVER_ERROR_500 = 500
 

@@ -19,4 +19,5 @@ class PredictController(interfaces.BaseController):
                 params=use_cases.PredictUseCaseParams(text=text)
             )
         except exceptions.UseCaseException as error:
-            print(error.message)
+            # print(error.message)
+            pass

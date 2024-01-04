@@ -40,9 +40,11 @@ class RecognitionController(interfaces.BaseController):
             return {"data": detection, "image": io_image}
 
         except exceptions.UseCaseException as error:
-            print(error.message)
+            # print(error.message)
+            pass
         except Exception as error:
-            print("error:", error)
+            pass
+            # print("error:", error)
 
     def convert_bytes_to_cv2_image(self, data: io.BytesIO) -> cv2.typing.MatLike:
         self.image_manager.convert_bytes_to_cv2_image(data=data)

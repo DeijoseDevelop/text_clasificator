@@ -20,6 +20,6 @@ class TrainModelUseCase(interfaces.UseCase):
         try:
             self.repository.train(data=params.data)
         except Exception as error:
-            print(error)
+            # print(error)
             raise exceptions.UseCaseException(error)
 

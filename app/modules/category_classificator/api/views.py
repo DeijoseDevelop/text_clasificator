@@ -1,12 +1,13 @@
 import flask
 
-from app.modules.common import interfaces, utils
+from app.modules.common import interfaces, utils, decorators
 from app.modules.category_classificator.data import use_cases, repositories
 from app.modules.category_classificator import controllers
 
 
 class PredictCategoryClassificatorView(interfaces.APIView):
 
+    @decorators.x_api_key_required
     def post(self):
         controller = controllers.PredictController(
             predict_use_case=use_cases.PredictUseCase(

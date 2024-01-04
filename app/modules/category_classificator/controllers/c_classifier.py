@@ -23,7 +23,8 @@ class ClassifierController(interfaces.BaseController):
                 params=use_cases.PredictUseCaseParams(text=text)
             )
         except exceptions.UseCaseException as error:
-            print(error.message)
+            # print(error.message)
+            pass
 
     def train_model(self) -> None:
         self.train_model_use_case.call(

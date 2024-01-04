@@ -22,7 +22,8 @@ class TrainModelController(interfaces.BaseController):
             )
             return "Successfully trained"
         except exceptions.UseCaseException as error:
-            print(error.message)
+            # print(error.message)
+            pass
 
     def get_data(self) -> t.Dict[str, str]:
         (texts, labels) = self.clean_data_use_case.call()
